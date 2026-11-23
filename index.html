@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mohamed Malek Abdelli — Portfolio</title>
+<style>
+:root{--bg:#f7f7fb;--surface:#fff;--text:#14142b;--muted:#5d5d7a;--border:#e3e3ef;--a1:#6d5dfc;--a2:#ff6ec7;--a3:#22d3ee;--shadow:0 10px 30px rgba(40,30,120,.10);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0c1a;--surface:#15152b;--text:#f0f0ff;--muted:#a3a3c4;--border:#26264a;--shadow:0 10px 30px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c0c1a;--surface:#15152b;--text:#f0f0ff;--muted:#a3a3c4;--border:#26264a;--shadow:0 10px 30px rgba(0,0,0,.4);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;transition:background .3s,color .3s;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+section{padding:88px 0}
+h2{font-size:clamp(1.7rem,4vw,2.3rem);letter-spacing:-.02em;margin-bottom:8px}
+.sub{color:var(--muted);margin-bottom:40px}
+.grad{background:linear-gradient(120deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;font-size:1.15rem}
+.links{display:flex;gap:26px;align-items:center}
+.links a{color:var(--muted);font-size:.93rem;font-weight:500;transition:color .2s}
+.links a:hover{color:var(--text)}
+.ctl{display:flex;gap:10px;align-items:center}
+button{font:inherit;cursor:pointer}
+.ib{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:1.05rem;transition:transform .2s}
+.ib:hover{transform:scale(1.08)}
+#menu{display:none}
+/* hero */
+.hero{padding:110px 0 90px;position:relative}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;z-index:-1}
+.hero::before{width:360px;height:360px;background:var(--a1);top:20px;right:5%}
+.hero::after{width:280px;height:280px;background:var(--a2);bottom:0;left:0}
+.tag{display:inline-block;padding:6px 14px;border:1px solid var(--border);border-radius:99px;background:var(--surface);color:var(--muted);font-size:.85rem;margin-bottom:22px}
+.hero h1{font-size:clamp(2.4rem,7vw,4.4rem);line-height:1.08;letter-spacing:-.03em;margin-bottom:18px}
+.hero p{max-width:560px;color:var(--muted);font-size:1.12rem;margin-bottom:32px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 24px;border-radius:12px;font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--text);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn.p{background:linear-gradient(120deg,var(--a1),var(--a2));color:#fff;border:0}
+.btn.s{padding:8px 16px;font-size:.88rem;border-radius:10px}
+/* about */
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+.about p+p{margin-top:14px}
+.about p{color:var(--muted)}
+.facts{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+.facts div{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.94rem}
+.facts div:last-child{border:0}
+.facts span{color:var(--muted)}
+.facts b{text-align:right}
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px 40px}
+.sk .row{display:flex;justify-content:space-between;font-weight:600;font-size:.95rem;margin-bottom:6px}
+.sk .row span{color:var(--muted);font-weight:500}
+.bar{height:9px;background:var(--border);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--a1),var(--a2));transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.on .bar i{width:var(--w)}
+/* projects */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+.thumb{height:150px;display:grid;place-items:center;font-size:3.4rem;transition:transform .4s}
+.card:hover .thumb{transform:scale(1.06)}
+.tw{overflow:hidden}
+.cb{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.cb h3{font-size:1.15rem}
+.pitch{font-weight:600;font-size:.93rem;color:var(--a1)}
+.cb p{color:var(--muted);font-size:.92rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.chips span{font-size:.75rem;padding:3px 10px;border-radius:99px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+.cb .btns{margin-top:8px}
+/* timeline */
+.tl{position:relative;padding-left:30px;max-width:720px}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--a1),var(--a2))}
+.ti{position:relative;margin-bottom:30px}
+.ti::before{content:"";position:absolute;left:-30px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--a1)}
+.ti small{color:var(--a1);font-weight:700;font-size:.82rem;letter-spacing:.04em}
+.ti h3{font-size:1.1rem}
+.ti p{color:var(--muted);font-size:.94rem}
+/* testimonials */
+.tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.t{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:26px;transition:transform .3s}
+.t:hover{transform:translateY(-5px)}
+.t p{font-style:italic;color:var(--muted);margin-bottom:18px}
+.t b{display:block}.t small{color:var(--muted)}
+/* contact */
+.cf{max-width:620px;display:grid;gap:14px}
+input,textarea{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus{outline:0;border-color:var(--a1);box-shadow:0 0 0 3px color-mix(in srgb,var(--a1) 25%,transparent)}
+textarea{min-height:140px;resize:vertical}
+.note{color:var(--muted);font-size:.85rem}
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;color:var(--muted);font-size:.88rem}
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+@media (max-width:760px){
+ section{padding:64px 0}.about{grid-template-columns:1fr}
+ #menu{display:inline-block}
+ .links{position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--border);display:none;padding:8px 22px 14px}
+ .links.open{display:flex}.links a{padding:12px 0;width:100%}
+}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+ <a href="#home" class="logo">M<span class="grad">.</span>Abdelli</a>
+ <div class="links" id="links">
+  <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#journey">Journey</a><a href="#testimonials">Reviews</a><a href="#contact">Contact</a>
+ </div>
+ <div class="ctl"><button class="ib" id="theme" aria-label="Toggle light and dark mode">🌙</button><button class="ib" id="menu" aria-label="Menu">☰</button></div>
+</div></nav>
+
+<header class="hero" id="home"><div class="wrap">
+ <span class="tag">🎓 3rd-year Business Intelligence · FSEG Tunis</span>
+ <h1>Hi, I’m <span class="grad">Mohamed Malek Abdelli</span><br>I turn data into web experiences.</h1>
+ <p>Business Intelligence student who loves building clean, fast, useful websites. I’m looking for a web development internship to grow with a great team.</p>
+ <div class="btns"><a class="btn p" href="#contact">Let’s work together</a><a class="btn" href="#projects">See my projects</a></div>
+</div></header>
+
+<section id="about"><div class="wrap">
+ <h2 class="rv">About me</h2><p class="sub rv">A little context behind the code.</p>
+ <div class="about rv">
+  <div>
+   <p>I’m a third-year Business Intelligence student at the Faculty of Economic Sciences and Management of Tunis. My studies taught me how to make sense of messy data — and along the way I discovered that I enjoy even more the moment when that data becomes something people can actually click, explore and use.</p>
+   <p>That’s why I teach myself web development on the side. I like clean interfaces, readable code and projects that solve a real problem. Right now I’m looking for an internship where I can ship real features, learn from experienced developers and bring my analytical mindset to the product.</p>
+  </div>
+  <div class="facts">
+   <div><span>Studying</span><b>Business Intelligence (L3)</b></div>
+   <div><span>School</span><b>FSEG Tunis</b></div>
+   <div><span>Based in</span><b>Tunis, Tunisia</b></div>
+   <div><span>Looking for</span><b>Web dev internship</b></div>
+   <div><span>Languages</span><b>Arabic · French · English</b></div>
+  </div>
+ </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+ <h2 class="rv">Skills</h2><p class="sub rv">Tools I use most, with an honest self-assessment.</p>
+ <div class="skills rv" id="skbox"></div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+ <h2 class="rv">Projects</h2><p class="sub rv">Selected work from coursework and personal practice.</p>
+ <div class="grid" id="pgrid"></div>
+</div></section>
+
+<section id="journey"><div class="wrap">
+ <h2 class="rv">Education &amp; experience</h2><p class="sub rv">The path so far.</p>
+ <div class="tl rv">
+  <div class="ti"><small>2025 — PRESENT</small><h3>Web Lead · FSEG Data Club</h3><p>Maintain the club website, build registration pages for events and mentor first-year members on HTML, CSS and Git.</p></div>
+  <div class="ti"><small>SUMMER 2025</small><h3>Freelance web &amp; reporting projects</h3><p>Built a small business site and a sales report in Power BI for a local shop, from requirements to delivery.</p></div>
+  <div class="ti"><small>2023 — PRESENT</small><h3>Licence in Business Intelligence</h3><p>Faculty of Economic Sciences and Management of Tunis. Databases, data warehousing, statistics, decision-support systems and programming.</p></div>
+  <div class="ti"><small>2023</small><h3>Baccalauréat</h3><p>Graduated and chose BI to combine my interests in data, technology and business.</p></div>
+ </div>
+</div></section>
+
+<section id="testimonials"><div class="wrap">
+ <h2 class="rv">What people say</h2><p class="sub rv">Kind words from classmates and teachers.</p>
+ <div class="tg">
+  <div class="t rv"><p>“Malek turns vague requirements into something working very fast. His dashboards were the cleanest in the class.”</p><b>Dr. Sana Ben Salah</b><small>Professor, Data Warehousing</small></div>
+  <div class="t rv"><p>“Great teammate. He explains code patiently and always makes sure the whole group understands the plan.”</p><b>Yassine K.</b><small>Classmate, BI L3</small></div>
+  <div class="t rv"><p>“Reliable and curious. He rebuilt our club website in two weeks and it looks professional.”</p><b>Ines M.</b><small>President, FSEG Data Club</small></div>
+ </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+ <h2 class="rv">Get in touch</h2><p class="sub rv">Have an internship opportunity or a project idea? Say hello.</p>
+ <form class="cf rv" id="cf">
+  <input id="n" placeholder="Your name" required>
+  <input id="e" type="email" placeholder="Your email" required>
+  <textarea id="m" placeholder="Your message" required></textarea>
+  <button class="btn p" type="submit">Send message</button>
+  <p class="note">This opens your email app, addressed to abdellimalek05@gmail.com.</p>
+ </form>
+</div></section>
+
+<footer>© <span id="y"></span> Mohamed Malek Abdelli · Built with HTML, CSS &amp; JavaScript</footer>
+
+<script>
+const skills=[["HTML & CSS",90],["JavaScript",78],["React",65],["Node.js",55],["Python",80],["SQL",88],["Power BI",85],["Git & GitHub",75],["Figma",60]];
+const projects=[
+["📊","Retail Insights Dashboard","An interactive sales dashboard that makes monthly performance clear at a glance.","Store managers were reading 40-page Excel reports. I designed the data model and built the dashboard end to end. Report preparation dropped from two days to ten minutes.",["Power BI","SQL Server","DAX"],"linear-gradient(135deg,#6d5dfc,#22d3ee)"],
+["🏗️","Mini Data Warehouse","A star-schema warehouse with an automated nightly ETL pipeline.","Raw CSV exports were inconsistent and hard to compare. I modelled the schema and wrote the Python ETL scripts. Query time on key reports improved by about 70%.",["Python","PostgreSQL","Pandas"],"linear-gradient(135deg,#ff6ec7,#6d5dfc)"],
+["🔮","Customer Churn Predictor","A model that flags customers likely to leave, with a simple web interface.","A telecom dataset had 20% churn and no early warning. I cleaned the data, trained the model and built the Flask front end. It reached 84% accuracy on test data.",["Python","scikit-learn","Flask"],"linear-gradient(135deg,#f59e0b,#ff6ec7)"],
+["🎓","UniPlan Study Planner","A responsive web app to plan exams, deadlines and revision sessions.","Classmates kept missing deadlines across scattered notes. I led design and front-end development with a friend. Over 60 students used it during the exam period.",["React","Node.js","MongoDB"],"linear-gradient(135deg,#10b981,#22d3ee)"],
+["💸","Budget Buddy","A lightweight expense tracker with charts and monthly goals.","Students needed a simple way to see where their money goes. I built it solo with vanilla JavaScript and local storage. It works offline and loads in under a second.",["JavaScript","Chart.js","CSS"],"linear-gradient(135deg,#3b82f6,#6d5dfc)"]];
+document.getElementById("skbox").innerHTML=skills.map(s=>`<div class="sk"><div class="row">${s[0]}<span>${s[1]}%</span></div><div class="bar"><i style="--w:${s[1]}%"></i></div></div>`).join("");
+document.getElementById("pgrid").innerHTML=projects.map(p=>`<article class="card rv"><div class="tw"><div class="thumb" style="background:${p[5]}">${p[0]}</div></div><div class="cb"><h3>${p[1]}</h3><div class="pitch">${p[2]}</div><p>${p[3]}</p><div class="chips">${p[4].map(t=>`<span>${t}</span>`).join("")}</div><div class="btns"><a class="btn p s" href="#" onclick="return false">View project</a><a class="btn s" href="#" onclick="return false">Source code</a></div></div></article>`).join("");
+document.getElementById("y").textContent=new Date().getFullYear();
+/* theme */
+const root=document.documentElement,tb=document.getElementById("theme");
+let saved=null;try{saved=localStorage.getItem("theme")}catch(e){}
+function setT(t){root.setAttribute("data-theme",t);tb.textContent=t==="dark"?"☀️":"🌙";try{localStorage.setItem("theme",t)}catch(e){}}
+setT(saved||"dark");
+tb.onclick=()=>setT(root.getAttribute("data-theme")==="dark"?"light":"dark");
+/* menu */
+const lk=document.getElementById("links");
+document.getElementById("menu").onclick=()=>lk.classList.toggle("open");
+lk.querySelectorAll("a").forEach(a=>a.onclick=()=>lk.classList.remove("open"));
+/* reveal */
+const els=document.querySelectorAll(".rv");
+if("IntersectionObserver"in window){const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("on");io.unobserve(x.target)}}),{threshold:.12});els.forEach(e=>io.observe(e))}else els.forEach(e=>e.classList.add("on"));
+/* contact */
+document.getElementById("cf").onsubmit=ev=>{ev.preventDefault();const n=document.getElementById("n").value,e=document.getElementById("e").value,m=document.getElementById("m").value;location.href="mailto:abdellimalek05@gmail.com?subject="+encodeURIComponent("Portfolio message from "+n)+"&body="+encodeURIComponent(m+"\n\n— "+n+" ("+e+")")};
+</script>
+</body>
+</html>
